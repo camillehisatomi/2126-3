@@ -41,10 +41,16 @@
 </div>
 <canvas id="myCanvas" width="600" height="300"></canvas>
 <img src="#"/>
+
+
+<audio controls id="laser">
+  <source src="https://math.seattleacademy.org/garyanderson/snd/laser_shot.wav" type="audio/wav">
+</audio>
   
   
       <script id="rendered-js" >
 console.clear();
+const lasersnd = document.getElementById("laser");
 let timer = 0;
 const c = document.getElementById("myCanvas");
 const ctx = c.getContext("2d");
@@ -133,6 +139,7 @@ function checkCollide() {
         (bots[i].x - bots[j].x) ** 2 + (bots[i].y - bots[j].y) ** 2
       );
       if (d <= bots[i].r + bots[j].r) {
+        lasersnd.play()
         if (bots[i].r < bots[j].r) {
           bots[j].r = Math.sqrt(bots[i].r ** 2 + bots[j].r ** 2);
           bots[i].r = 0;
@@ -210,3 +217,4 @@ document.getElementById("resetBots").addEventListener("click", doResetBots);
 </body>
 
 </html>
+ 
